@@ -55,6 +55,7 @@ class MainAdapter(val homeFeed: HomeFeed): RecyclerView.Adapter<MainAdapter.View
             itemView.setOnClickListener{
                 val intent = Intent(itemView.context, DetailCourseActivity::class.java)
                 intent.putExtra(DetailCourseActivity.VIDEO_TITLE_KEY, video?.name)
+                intent.putExtra(DetailCourseActivity.VIDEO_ID_KEY, video?.id)
                 itemView.context.startActivity(intent)
             }
         }
