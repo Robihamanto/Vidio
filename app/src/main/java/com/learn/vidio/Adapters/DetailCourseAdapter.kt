@@ -1,5 +1,6 @@
 package com.learn.vidio.Adapters
 
+import android.content.Intent
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -7,6 +8,7 @@ import android.view.ViewGroup
 import com.learn.vidio.Model.Course
 import com.learn.vidio.Model.Video
 import com.learn.vidio.R
+import com.learn.vidio.Views.CourseLessonActivity
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.course_detail_row.view.*
 
@@ -25,9 +27,10 @@ class DetailCourseAdapter(val courses: Array<Course>): RecyclerView.Adapter<Deta
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val course = courses.get(position)
         holder.bindView(course)
+        holder.course = course
     }
 
-    inner class ViewHolder(itemView: View, video: Video? = null): RecyclerView.ViewHolder(itemView){
+    inner class ViewHolder(itemView: View,var course: Course? = null): RecyclerView.ViewHolder(itemView){
 
         val imageCourseImageView = itemView.detailCourseImageView
         val titleCourseTextView = itemView.titleCourseTextView
@@ -43,6 +46,14 @@ class DetailCourseAdapter(val courses: Array<Course>): RecyclerView.Adapter<Deta
             titleCourseTextView.text = course.name
             episodeCourseTextView.text = course.number.toString()
             videoLengthCourseTextView.text = course.duration
+        }
+
+        init {
+            itemView.setOnClickListener {
+                val intent = Intent(itemView.context, CourseLessonActivity::class.java)
+                intent.putExtra(CourseLessonActivity.COURSE_URL_KEY, course?.link)
+                itemView.context.startActivity(intent)
+            }
         }
 
     }

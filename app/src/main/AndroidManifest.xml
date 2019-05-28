@@ -11,14 +11,24 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
-        <activity android:name=".Views.DetailCourseActivity"
+        <activity android:name=".Views.CourseLessonActivity"
+                  android:label="Course Lesson"
+                  android:launchMode="singleTop">
+            <meta-data
+                    android:name="android.support.PARENT_ACTIVITY"
+                    android:value=".Views.DetailCourseActivity"/>
+        </activity>
+        <activity
+                android:name=".Views.DetailCourseActivity"
                 android:label="Course Detail 📖"
                 android:launchMode="singleTop">
-                <meta-data android:name="android.support.PARENT_ACTIVITY"
-                           android:value=".MainActivity"/>
+            <meta-data
+                    android:name="android.support.PARENT_ACTIVITY"
+                    android:value=".MainActivity"/>
         </activity>
-        <activity android:name=".MainActivity"
-        android:launchMode="singleTop">
+        <activity
+                android:name=".MainActivity"
+                android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
